@@ -1,0 +1,83 @@
+/* CSS styles */
+
+body {
+  height: 100vh;
+  background-color: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+main {
+  height: 500px;
+  width: 400px;
+  border: 3px solid;
+  border-image: linear-gradient(135deg, #f8cb07, #f83839 99%) 1;
+  border-radius: 1em;
+  background-size: 100%;
+  background-image: linear-gradient(135deg, #f8cb07, #f83839);
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#screen {
+  height: 175px;
+  width: 350px;
+  border-bottom: 3px solid;
+  border-image: linear-gradient(135deg, #f8cb07, #fd8417) 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+}
+
+#operand-display {
+  font-size: 60px;
+}
+
+#equation-display {
+  padding-top: 20px;
+  font-size: 30px;
+}
+
+#grid-container {
+  height: 525px;
+  width: 350px;
+  display: grid;
+  grid-template:
+    "a a b b";
+  gap: 15px;
+  place-content: center;
+}
+
+button {
+  height: 50px;
+  width: 70px;
+  border: 2px solid;
+  border-image: linear-gradient(135deg, #f8cb07, #fd8417) 1;
+  background: transparent;
+  font-size: 24px;
+}
+
+#clear,
+#delete {
+  height: 50px;
+  width: 155px;
+}
+
+#clear {
+  grid-area: a;
+}
+
+#delete {
+  grid-area: b;
+}
+
+button:hover {
+  border-image: linear-gradient(135deg, #fdeda6, #ffd3ad) 1;
+}
