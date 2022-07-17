@@ -5,6 +5,25 @@ output: 3
 input 1 + 4 + 5 - 3
 output: 1 + 4 -> 5 + 5 -> 10 - 3 = 7
 
+let num1 = 0.00
+let num2 = 0.00
+
+on number click, 
+  operandDisplay.textContent = '';
+  num1 += this.textContent;
+  operandDisplay.textContent = num1;
+  equation.textContent = num1;
+
+on operator click,
+  equationDisplay.textContent  += this.textContent;
+  num1 = null;
+
+
+  
+
+
+
+
 
 
 */
@@ -20,6 +39,8 @@ const equationDisplay = document.querySelector('#equation-display');
 const clearButton = document.querySelector('#clear');
 const equal = document.querySelector('.equal');
 let result = null;
+let num1 = '';
+let equation = '';
 
 operands.forEach( (operand) => {
   operand.addEventListener('click', showOperand);
@@ -38,17 +59,21 @@ clearButton.addEventListener('click', clear);
 function clear () {
   operandDisplay.textContent = '0.00';
   equationDisplay.textContent = '';
+  num1 = '';
 }
 
 
 function showOperand () {
-  operandDisplay.textContent = this.textContent;
+  operandDisplay.textContent = '';
+  num1 += this.textContent;
+  operandDisplay.textContent = num1;
   equationDisplay.textContent += this.textContent;
 }
 
 
 function showOperator () {
   equationDisplay.textContent += this.textContent;
+  num1 = '';
 }
 
 
