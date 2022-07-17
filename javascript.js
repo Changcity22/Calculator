@@ -74,6 +74,10 @@ function showOperand () {
 
 
 function showOperator () {
+  if (equationDisplay.textContent.match(/[+-/x÷]+/)) {
+    operate();
+    equationDisplay.textContent = result;
+  }
   equationDisplay.textContent += this.textContent;
   equation = equationDisplay.textContent;
   num1 = '';
