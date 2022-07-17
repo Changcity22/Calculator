@@ -60,19 +60,22 @@ function clear () {
   operandDisplay.textContent = '0.00';
   equationDisplay.textContent = '';
   num1 = '';
+  num2 = '';
+  equation = '';
 }
 
 
 function showOperand () {
   operandDisplay.textContent = '';
   num1 += this.textContent;
-  operandDisplay.textContent = num1;
-  equationDisplay.textContent += this.textContent;
+  operandDisplay.textContent = parseFloat(num1);
+  equationDisplay.textContent = equation + parseFloat(num1);
 }
 
 
 function showOperator () {
   equationDisplay.textContent += this.textContent;
+  equation = equationDisplay.textContent;
   num1 = '';
 }
 
