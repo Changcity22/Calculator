@@ -63,6 +63,7 @@ function clear () {
   num1 = '';
   num2 = '';
   equation = '';
+  result = null;
 }
 
 
@@ -132,7 +133,12 @@ function multiply (num1, num2) {
 
 
 function divide (num1, num2) {
-  let quotient = Number(num1) / Number(num2);
+  if (num2 == 0) {
+    operandDisplay.textContent = 'NICE TRY';
+  }
+  else {
+    let quotient = Number(num1) / Number(num2);
+  }
   return quotient;
 };
   
