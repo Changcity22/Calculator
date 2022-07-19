@@ -41,6 +41,7 @@ const equal = document.querySelector('.equal');
 let result = null;
 let num1 = '';
 let equation = '';
+let placeHolder = '';
 
 operands.forEach( (operand) => {
   operand.addEventListener('click', showOperand);
@@ -78,6 +79,13 @@ function showOperator () {
     operate();
     equationDisplay.textContent = result;
   }
+
+  if (equationDisplay.textContent.match(/[=]+/)) {
+    placeHolder = equationDisplay.textContent.split('=');
+    placeHolder.pop();
+    equationDisplay.textContent = placeHolder;
+  }
+
   equationDisplay.textContent += this.textContent;
   equation = equationDisplay.textContent;
   num1 = '';
