@@ -37,11 +37,12 @@ const operators = document.querySelectorAll('.operator');
 const operandDisplay = document.querySelector('#operand-display');
 const equationDisplay = document.querySelector('#equation-display');
 const clearButton = document.querySelector('#clear');
+const deleteButton = document.querySelector('#delete');
 const equal = document.querySelector('.equal');
 let result = null;
+let roundedResult = null;
 let num1 = '';
 let equation = '';
-let placeHolder = '';
 
 operands.forEach( (operand) => {
   operand.addEventListener('click', showOperand);
@@ -49,12 +50,29 @@ operands.forEach( (operand) => {
 
 operators.forEach( (operator) => {
   operator.addEventListener('click', showOperator);
-  equal.addEventListener('click', showOperator)
 })
 
 equal.addEventListener('click', operate);
 
 clearButton.addEventListener('click', clear);
+
+deleteButton.addEventListener('click', backspace);
+
+
+function backspace () {
+  let oldOperandDisplay = operandDisplay.textContent.split('');
+  oldOperandDisplay.pop();
+
+  let oldEquationDisplay = equationDisplay.textContent.split('');
+  oldEquationDisplay.pop();
+
+  let newOperandDisplay = oldOperandDisplay.join('');
+  let newEquationDisplay = oldEquationDisplay.join('');
+  
+  operandDisplay.textContent = newOperandDisplay;
+  equationDisplay.textContent = newEquationDisplay;
+
+}
 
 
 function clear () {
@@ -64,6 +82,7 @@ function clear () {
   num2 = '';
   equation = '';
   result = null;
+  roundedResult = null;
 }
 
 
@@ -78,14 +97,15 @@ function showOperand () {
 function showOperator () {
   if (equationDisplay.textContent.match(/[+-/x÷]+/)) {
     operate();
-    equationDisplay.textContent = result;
+    equationDisplay.textContent = roundedResult;
   }
 
-  if (equationDisplay.textContent.match(/[=]+/)) {
+  /* if (equationDisplay.textContent.match(/[=]+/)) {
     placeHolder = equationDisplay.textContent.split('=');
     placeHolder.pop();
     equationDisplay.textContent = placeHolder;
   }
+  */
 
   equationDisplay.textContent += this.textContent;
   equation = equationDisplay.textContent;
@@ -109,7 +129,9 @@ function operate () {
   else if (operator.match(/[÷]+/)) {
     result = divide(num1, num2);
   }
-  operandDisplay.textContent = result;
+  
+  roundedResult = result.toString().substr(0,12);
+  operandDisplay.textContent = roundedResult;
 
 }
 
@@ -133,27 +155,7 @@ function multiply (num1, num2) {
 
 
 function divide (num1, num2) {
-  if (num2 == 0) {
-    operandDisplay.textContent = 'NICE TRY';
-  }
-  else {
-    let quotient = Number(num1) / Number(num2);
-  }
-  return quotient;
+  let quotient = null;
+  return num2 == 0 ? 'NICE TRY' : Number(num1) / Number(num2);
 };
   
-
-  const power = function(num1, num2) {
-      const expo = num1 ** num2;
-    return expo;
-  };
-  
-  const factorial = function(num) {
-    let result = 1
-  
-    for (let i = num; i >= 1; i--) {
-      result *= i;
-    }
-  
-    return result;
-  };
